@@ -8,7 +8,6 @@ import (
 
 type SearchApi interface {
 	Do(ctx context.Context, transport Transport) (*Response, error)
-	Run(ctx context.Context, transport Transport) (*Response, error)
 }
 
 type Response struct {
