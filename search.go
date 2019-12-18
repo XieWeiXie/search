@@ -1,24 +1,41 @@
 package search
 
 import (
-	"context"
 	"github.com/wuxiaoxiaoshen/search/seapi"
-	"io"
+	"github.com/wuxiaoxiaoshen/search/setransport"
 	"net/http"
-	"net/url"
 )
 
+var (
+	defaultZhiHu  = ""
+	defaultWeiBo  = "https://s.weibo.com"
+	defaultWeChat = ""
+)
+
+type ClientConfig struct {
+	Host  string `json:"name"`
+	Query string `json:"query"`
+}
+
+func NewClientConfig(host string, query string) *ClientConfig {
+	return &ClientConfig{
+		Host:  host,
+		Query: query,
+	}
+}
+
 type Client struct {
-	url     url.Values
-	request *http.Request
+	*seapi.API
+	Transport seapi.Transport
 }
 
-func (C Client) Do(ctx context.Context, api seapi.SearchApi) {
-	api.Do(ctx, C)
+func NewClient(cfg ClientConfig) *Client {
+	transport := setransport.NewClient(cfg.Host, cfg.Query)
+	return &Client{
+		Transport: transport,
+		API:       seapi.New(transport),
+	}
 }
-func (C Client) Perform(r *http.Request) (*http.Response, error) {
-
-}
-func (C *Client) newRequest(method string, url url.Values, body io.Reader) *http.Request {
-	return C.request
+func (C Client) Perform(request *http.Request) (*http.Response, error) {
+	return C.Transport.Perform(request)
 }

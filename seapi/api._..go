@@ -10,11 +10,11 @@ type API struct {
 // WeiBo...
 type WeiBo struct {
 	Synthetically *WeiBoSynthetically
-	User          *WeiBoUser
+	User          WeiBoUser
 	Passage       *WeiBoPassage
 	Video         *WeiBoVideo
 	Picture       *WeiBoPicture
-	Topic         *WeiBoTopic
+	Topic         WeiBoTopic
 }
 
 // ZhiHu...
@@ -26,4 +26,13 @@ type ZhiHu struct {
 type WeChat struct {
 	Article *WeChatArticle
 	Account *WeChatAccount
+}
+
+func New(t Transport) *API {
+	return &API{
+		WeiBo: &WeiBo{
+			User:  newWeiBoUser(t),
+			Topic: newWeiBoTopic(t),
+		},
+	}
 }
