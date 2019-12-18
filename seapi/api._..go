@@ -13,7 +13,7 @@ type WeiBo struct {
 	User          WeiBoUser
 	Passage       *WeiBoPassage
 	Video         *WeiBoVideo
-	Picture       *WeiBoPicture
+	Picture       WeiBoPicture
 	Topic         WeiBoTopic
 }
 
@@ -31,8 +31,9 @@ type WeChat struct {
 func New(t Transport) *API {
 	return &API{
 		WeiBo: &WeiBo{
-			User:  newWeiBoUser(t),
-			Topic: newWeiBoTopic(t),
+			User:    newWeiBoUser(t),
+			Topic:   newWeiBoTopic(t),
+			Picture: newWeiBoPicture(t),
 		},
 	}
 }
