@@ -26,4 +26,4 @@ jobs:
         run: go test -cpu=1,2,4 -v -tags integration ./...
 
       - name: Go get
-        run: go get github.com/wuxiaoxiaoshen/search
+        run: go get -u -v github.com/wuxiaoxiaoshen/search
