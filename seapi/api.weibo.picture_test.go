@@ -33,7 +33,6 @@ func TestWeiBoPicture2(t *testing.T) {
 
 	res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
 	fmt.Println(res)
