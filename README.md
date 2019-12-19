@@ -1,5 +1,8 @@
 <h1 align="center">Search</h1>
 <p align="center">
+  <em>Why Search?  Inspired by <a href="https://github.com/elastic/go-elasticsearch">go-elasticsearch</a>.</em>
+</p>
+<p align="center">
     <a href="https://github.com/wuxiaoxiaoshen">
         <img src="https://img.shields.io/badge/Author-wuxiaoxiaoshen-green" alt="Author">
     </a>
