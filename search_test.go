@@ -29,3 +29,27 @@ func TestClientPicture(t *testing.T) {
 	content, _ := ioutil.ReadAll(response.Body)
 	log.Println(string(content))
 }
+
+func TestClientPassage(t *testing.T) {
+	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	client := NewClient(*cfg)
+	response, _ := client.WeiBo.Passage(cfg.Query)
+	content, _ := ioutil.ReadAll(response.Body)
+	log.Println(string(content))
+}
+
+func TestClientVideo(t *testing.T) {
+	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	client := NewClient(*cfg)
+	response, _ := client.WeiBo.Video(cfg.Query)
+	content, _ := ioutil.ReadAll(response.Body)
+	log.Println(string(content))
+}
+
+func TestClientZhiHuTopic(t *testing.T) {
+	cfg := NewClientConfig("https://zhihu.com", "杨幂")
+	client := NewClient(*cfg)
+	response, _ := client.ZhiHu.Topic(cfg.Query)
+	content, _ := ioutil.ReadAll(response.Body)
+	log.Println(string(content))
+}

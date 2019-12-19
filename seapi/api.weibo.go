@@ -21,7 +21,10 @@ var (
 	defaultHeaderXRequestWithValue = "XMLHttpRequest"
 )
 var (
-	defaultReferUser    = "SUer_box"
-	defaultReferTopic   = "user_topic"
-	defaultReferPicture = "Spic_box"
+	defaultReferUser       = "SUer_box"
+	defaultReferTopic      = "user_topic"
+	defaultReferPicture    = "Spic_box"
+	defaultReferPassage    = "pic_article"
+	defaultReferPassageBox = "SListRelpage_box"
+	defaultReferVideo      = "article_video"
 )

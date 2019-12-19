@@ -9,23 +9,23 @@ type API struct {
 
 // WeiBo...
 type WeiBo struct {
-	Synthetically *WeiBoSynthetically
+	Synthetically WeiBoSynthetically
 	User          WeiBoUser
-	Passage       *WeiBoPassage
-	Video         *WeiBoVideo
+	Passage       WeiBoPassage
+	Video         WeiBoVideo
 	Picture       WeiBoPicture
 	Topic         WeiBoTopic
 }
 
 // ZhiHu...
 type ZhiHu struct {
-	Topic *ZhiHuTopic
+	Topic ZhiHuTopic
 }
 
 // WeChat...
 type WeChat struct {
-	Article *WeChatArticle
-	Account *WeChatAccount
+	Article WeChatArticle
+	Account WeChatAccount
 }
 
 func New(t Transport) *API {
@@ -34,6 +34,11 @@ func New(t Transport) *API {
 			User:    newWeiBoUser(t),
 			Topic:   newWeiBoTopic(t),
 			Picture: newWeiBoPicture(t),
+			Passage: newWeiBoPassage(t),
+			Video:   newWeiBoVideo(t),
+		},
+		ZhiHu: &ZhiHu{
+			Topic: newZhiHuTopic(t),
 		},
 	}
 }

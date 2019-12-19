@@ -53,6 +53,12 @@ curl https://s.weibo.com/topic?q=%E7%89%B9%E6%96%AF%E6%8B%89&pagetype=topic&topi
 
 ### 知乎
 
+**话题**
+
+```text
+curl https://www.zhihu.com/search?q=%E6%9D%A8%E5%B9%82&type=topic
+```
+
 ### 微信
 
 **文章**

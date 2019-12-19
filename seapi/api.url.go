@@ -15,6 +15,9 @@ func (S *SearchUrl) Url() {
 }
 
 func (S *SearchUrl) Add(key, value string) {
+	if S.query == nil {
+		S.Url()
+	}
 	S.query.Add(key, value)
 }
 func (S *SearchUrl) Format() string {

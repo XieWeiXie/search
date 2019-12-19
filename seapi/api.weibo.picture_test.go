@@ -32,9 +32,5 @@ func TestWeiBoPicture2(t *testing.T) {
 	req.Header.Add("Referer", "https://s.weibo.com/pic?q=%E6%9D%A8%E5%B9%82&Refer=Spic_box")
 
 	res, _ := http.DefaultClient.Do(req)
-
-	body, _ := ioutil.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
+	fmt.Println(res.StatusCode)
 }
