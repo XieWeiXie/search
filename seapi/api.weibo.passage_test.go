@@ -12,9 +12,8 @@ import (
 func TestWeiBoPassage(t *testing.T) {
 	req := &WeiBoPassageRequest{
 		Query: "杨幂",
-		Host:  defaultWBHost,
 	}
-	client := setransport.NewClient(req.Host, req.Query)
+	client := setransport.NewClient(req.Query)
 	response, e := req.Do(context.TODO(), client)
 	log.Println(response.StatusCode)
 	content, _ := ioutil.ReadAll(response.Body)

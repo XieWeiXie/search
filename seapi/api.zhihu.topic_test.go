@@ -11,9 +11,8 @@ import (
 func TestZhiHuTopic(t *testing.T) {
 	req := ZhiHuTopicRequest{
 		Query: "杨幂",
-		Host:  defaultZhiHuHost,
 	}
-	client := setransport.NewClient(req.Host, req.Query)
+	client := setransport.NewClient(req.Query)
 	response, _ := req.Do(context.TODO(), client)
 	content, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(content))

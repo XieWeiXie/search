@@ -14,8 +14,8 @@ import (
 func newWeiBoUser(t Transport) WeiBoUser {
 	return func(name string, o ...func(*WeiBoUserRequest)) (response *Response, err error) {
 		var r = &WeiBoUserRequest{
-			User: name,
-			Host: defaultWBHost,
+			Query: name,
+			host:  defaultWBHost,
 		}
 		for _, f := range o {
 			f(r)
@@ -27,19 +27,20 @@ func newWeiBoUser(t Transport) WeiBoUser {
 type WeiBoUser func(query string, o ...func(*WeiBoUserRequest)) (*Response, error)
 
 type WeiBoUserRequest struct {
-	User   string
-	Host   string
+	Query  string
+	host   string
 	format string
 }
 
 func (W *WeiBoUser) WithUser(name string) func(request *WeiBoUserRequest) {
 	return func(request *WeiBoUserRequest) {
-		request.User = name
+		request.Query = name
 	}
 }
 
-func (W *WeiBoUserRequest) formatUrl(host, path string) {
-	W.format = fmt.Sprintf("%s/%s", host, path)
+func (W *WeiBoUserRequest) formatUrl(path string) {
+	W.host = defaultWBHost
+	W.format = fmt.Sprintf("%s/%s", W.host, path)
 }
 
 func (W *WeiBoUserRequest) parse(response *http.Response) []WeiBoUserResponse {
@@ -87,7 +88,7 @@ func (W *WeiBoUserRequest) Do(ctx context.Context, transport Transport) (*Respon
 	method = http.MethodGet
 	path.WriteString("user")
 
-	W.formatUrl(W.Host, path.String())
+	W.formatUrl(path.String())
 	log.Println("user url", W.format)
 	u, e := url.Parse(W.format)
 	if e != nil {
@@ -95,7 +96,7 @@ func (W *WeiBoUserRequest) Do(ctx context.Context, transport Transport) (*Respon
 		return nil, e
 	}
 	query := u.Query()
-	query.Set(defaultQueryKey, W.User)
+	query.Set(defaultQueryKey, W.Query)
 	query.Set(defaultReferKey, defaultReferUser)
 	u.RawQuery = query.Encode()
 	req, e := http.NewRequest(method, u.String(), nil)

@@ -13,10 +13,9 @@ import (
 func TestWeiBoPicture(t *testing.T) {
 	req := &WeiBoPictureRequest{
 		Query: "杨幂",
-		Host:  defaultWBHost,
 		Page:  1,
 	}
-	client := setransport.NewClient(req.Host, req.Query)
+	client := setransport.NewClient(req.Query)
 	response, e := req.Do(context.TODO(), client)
 	log.Println(response.StatusCode)
 	content, _ := ioutil.ReadAll(response.Body)

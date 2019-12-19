@@ -31,9 +31,8 @@ func TestRegexp(t *testing.T) {
 func TestWeiBoVideo(t *testing.T) {
 	req := WeiBoVideoRequest{
 		Query: "杨幂",
-		Host:  defaultWBHost,
 	}
-	client := setransport.NewClient(req.Host, req.Query)
+	client := setransport.NewClient(req.Query)
 	response, e := req.Do(context.TODO(), client)
 	content, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(content), e)

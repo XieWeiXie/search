@@ -14,6 +14,7 @@ func newZhiHuTopic(t Transport) ZhiHuTopic {
 	return func(Query string, o ...func(request *ZhiHuTopicRequest)) (response *Response, err error) {
 		r := &ZhiHuTopicRequest{
 			Query: Query,
+			host:  defaultZhiHuHost,
 		}
 		for _, f := range o {
 			f(r)
@@ -26,12 +27,13 @@ type ZhiHuTopic func(Query string, o ...func(request *ZhiHuTopicRequest)) (*Resp
 
 type ZhiHuTopicRequest struct {
 	Query  string
-	Host   string
+	host   string
 	format string
 }
 
 func (Z *ZhiHuTopicRequest) formatUrl(path string) {
-	Z.format = fmt.Sprintf("%s/%s", Z.Host, path)
+	Z.host = defaultZhiHuHost
+	Z.format = fmt.Sprintf("%s/%s", Z.host, path)
 }
 func (Z *ZhiHuTopicRequest) parse(response *http.Response) ([]ZhiHuTopicResult, error) {
 	doc, _ := goquery.NewDocumentFromReader(response.Body)

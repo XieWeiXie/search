@@ -3,14 +3,12 @@ package setransport
 import "net/http"
 
 type Client struct {
-	Host      string `json:"host"`
 	Query     string `json:"query"`
 	transport *CacheTransport
 }
 
-func NewClient(host string, query string) *Client {
+func NewClient(query string) *Client {
 	return &Client{
-		Host:      host,
 		Query:     query,
 		transport: newCacheTransport(),
 	}

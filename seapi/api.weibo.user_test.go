@@ -10,10 +10,9 @@ import (
 
 func TestWeiBoUser(t *testing.T) {
 	req := WeiBoUserRequest{
-		User: "杨幂",
-		Host: defaultWBHost,
+		Query: "杨幂",
 	}
-	client := setransport.NewClient(req.Host, req.User)
+	client := setransport.NewClient(req.Query)
 	response, e := req.Do(context.TODO(), client)
 	content, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(content), e)

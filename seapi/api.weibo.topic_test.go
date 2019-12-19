@@ -13,7 +13,7 @@ func TestWeiBoTopic(t *testing.T) {
 		Query: "杨幂",
 		Host:  defaultWBHost,
 	}
-	client := setransport.NewClient(req.Host, req.Query)
+	client := setransport.NewClient(req.Query)
 	response, _ := req.Do(context.TODO(), client)
 	body, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(body))

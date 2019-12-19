@@ -13,13 +13,11 @@ var (
 )
 
 type ClientConfig struct {
-	Host  string `json:"name"`
 	Query string `json:"query"`
 }
 
-func NewClientConfig(host string, query string) *ClientConfig {
+func NewClientConfig(query string) *ClientConfig {
 	return &ClientConfig{
-		Host:  host,
 		Query: query,
 	}
 }
@@ -30,7 +28,7 @@ type Client struct {
 }
 
 func NewClient(cfg ClientConfig) *Client {
-	transport := setransport.NewClient(cfg.Host, cfg.Query)
+	transport := setransport.NewClient(cfg.Query)
 	return &Client{
 		Transport: transport,
 		API:       seapi.New(transport),

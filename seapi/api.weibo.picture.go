@@ -16,7 +16,7 @@ func newWeiBoPicture(t Transport) WeiBoPicture {
 		r := &WeiBoPictureRequest{
 			Query: query,
 			Page:  page,
-			Host:  defaultWBHost,
+			host:  defaultWBHost,
 		}
 		for _, f := range o {
 			f(r)
@@ -30,12 +30,13 @@ type WeiBoPicture func(query string, page int, o ...func(request *WeiBoPictureRe
 type WeiBoPictureRequest struct {
 	Query  string
 	Page   int
-	Host   string
+	host   string
 	format string
 }
 
 func (W *WeiBoPictureRequest) formatUrl(path string) {
-	W.format = fmt.Sprintf("%s/%s", W.Host, path)
+	W.host = defaultWBHost
+	W.format = fmt.Sprintf("%s/%s", W.host, path)
 }
 
 func (W *WeiBoPictureRequest) parse(response *http.Response) ([]WeiBoPictureResult, error) {

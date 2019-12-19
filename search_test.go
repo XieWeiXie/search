@@ -7,7 +7,7 @@ import (
 )
 
 func TestClientUser(t *testing.T) {
-	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.WeiBo.User(cfg.Query)
 	content, _ := ioutil.ReadAll(response.Body)
@@ -15,7 +15,7 @@ func TestClientUser(t *testing.T) {
 
 }
 func TestClientTopic(t *testing.T) {
-	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.WeiBo.Topic(cfg.Query)
 	content, _ := ioutil.ReadAll(response.Body)
@@ -23,7 +23,7 @@ func TestClientTopic(t *testing.T) {
 }
 
 func TestClientPicture(t *testing.T) {
-	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.WeiBo.Picture(cfg.Query, 1)
 	content, _ := ioutil.ReadAll(response.Body)
@@ -31,7 +31,7 @@ func TestClientPicture(t *testing.T) {
 }
 
 func TestClientPassage(t *testing.T) {
-	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.WeiBo.Passage(cfg.Query)
 	content, _ := ioutil.ReadAll(response.Body)
@@ -39,7 +39,7 @@ func TestClientPassage(t *testing.T) {
 }
 
 func TestClientVideo(t *testing.T) {
-	cfg := NewClientConfig("https://s.weibo.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.WeiBo.Video(cfg.Query)
 	content, _ := ioutil.ReadAll(response.Body)
@@ -47,7 +47,7 @@ func TestClientVideo(t *testing.T) {
 }
 
 func TestClientZhiHuTopic(t *testing.T) {
-	cfg := NewClientConfig("https://zhihu.com", "杨幂")
+	cfg := NewClientConfig("杨幂")
 	client := NewClient(*cfg)
 	response, _ := client.ZhiHu.Topic(cfg.Query)
 	content, _ := ioutil.ReadAll(response.Body)

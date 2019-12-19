@@ -14,6 +14,7 @@ func newWeiBoPassage(t Transport) WeiBoPassage {
 	return func(query string, o ...func(request *WeiBoPassageRequest)) (response *Response, err error) {
 		r := &WeiBoPassageRequest{
 			Query: query,
+			host:  defaultWBHost,
 		}
 		for _, f := range o {
 			f(r)
@@ -26,12 +27,13 @@ type WeiBoPassage func(query string, o ...func(request *WeiBoPassageRequest)) (*
 
 type WeiBoPassageRequest struct {
 	Query  string
-	Host   string
+	host   string
 	format string
 }
 
 func (W *WeiBoPassageRequest) formatUrl(path string) {
-	W.format = fmt.Sprintf("%s/%s", W.Host, path)
+	W.host = defaultWBHost
+	W.format = fmt.Sprintf("%s/%s", W.host, path)
 }
 
 func (W *WeiBoPassageRequest) parse(response *http.Response) ([]WeiBoPassageResult, error) {

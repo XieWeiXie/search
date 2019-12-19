@@ -14,7 +14,7 @@ func newWeiBoVideo(t Transport) WeiBoVideo {
 	return func(query string, o ...func(request *WeiBoVideoRequest)) (response *Response, err error) {
 		r := &WeiBoVideoRequest{
 			Query: query,
-			Host:  defaultWBHost,
+			host:  defaultWBHost,
 		}
 		for _, f := range o {
 			f(r)
@@ -27,12 +27,13 @@ type WeiBoVideo func(query string, o ...func(request *WeiBoVideoRequest)) (*Resp
 
 type WeiBoVideoRequest struct {
 	Query  string
-	Host   string
+	host   string
 	format string
 }
 
 func (W *WeiBoVideoRequest) formatUrl(path string) {
-	W.format = fmt.Sprintf("%s/%s", W.Host, path)
+	W.host = defaultWBHost
+	W.format = fmt.Sprintf("%s/%s", W.host, path)
 }
 
 func (W *WeiBoVideoRequest) parse(response *http.Response) ([]WeiBoVideoResult, error) {
