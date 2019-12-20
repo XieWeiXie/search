@@ -42,8 +42,7 @@ func Demo1ZhiHuTopic(query string) {
 	}
 	client := setransport.NewClient(req.Query)
 	response, _ := req.Do(context.TODO(), client)
-	content, _ := ioutil.ReadAll(response.Body)
-	fmt.Println(string(content))
+	log.Println(response.String())
 }
 func main(){
 	for _, i := range []string{"杨幂", "刘诗诗", "刘亦菲"} {
@@ -79,8 +78,7 @@ func Demo2ZhiHuTopic(query string) {
 	cfg := search.NewClientConfig(query)
 	client := search.NewClient(*cfg)
 	response, _ := client.ZhiHu.Topic(cfg.Query)
-	content, _ := ioutil.ReadAll(response.Body)
-	log.Println(string(content))
+	log.Println(response.String())
 }
 func main(){
 	for _, i := range []string{"杨幂", "刘诗诗", "刘亦菲"} {

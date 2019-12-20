@@ -6,12 +6,6 @@ import (
 	"net/http"
 )
 
-var (
-	defaultZhiHu  = ""
-	defaultWeiBo  = "https://s.weibo.com"
-	defaultWeChat = ""
-)
-
 type ClientConfig struct {
 	Query string `json:"query"`
 }

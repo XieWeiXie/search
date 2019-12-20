@@ -2,11 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/wuxiaoxiaoshen/search"
 	"github.com/wuxiaoxiaoshen/search/seapi"
 	"github.com/wuxiaoxiaoshen/search/setransport"
-	"io/ioutil"
 	"log"
 )
 
@@ -26,16 +24,14 @@ func Demo1ZhiHuTopic(query string) {
 	}
 	client := setransport.NewClient(req.Query)
 	response, _ := req.Do(context.TODO(), client)
-	content, _ := ioutil.ReadAll(response.Body)
-	fmt.Println(string(content))
+	log.Println(response.String())
 }
 
 func Demo2ZhiHuTopic(query string) {
 	cfg := search.NewClientConfig(query)
 	client := search.NewClient(*cfg)
 	response, _ := client.ZhiHu.Topic(cfg.Query)
-	content, _ := ioutil.ReadAll(response.Body)
-	log.Println(string(content))
+	log.Println(response.String())
 }
 
 func Demo3WeiBoUser(query string) {
@@ -44,13 +40,11 @@ func Demo3WeiBoUser(query string) {
 	}
 	client := setransport.NewClient(req.Query)
 	response, _ := req.Do(context.TODO(), client)
-	content, _ := ioutil.ReadAll(response.Body)
-	fmt.Println(string(content))
+	log.Println(response.String())
 }
 func Demo4WeiBoUser(query string) {
 	cfg := search.NewClientConfig(query)
 	client := search.NewClient(*cfg)
 	response, _ := client.WeiBo.User(cfg.Query)
-	content, _ := ioutil.ReadAll(response.Body)
-	log.Println(string(content))
+	log.Println(response.String())
 }
