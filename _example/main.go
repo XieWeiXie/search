@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	for _, i := range []string{"杨幂", "刘诗诗", "刘亦菲"} {
+	for _, i := range []string{"杨幂"} {
 		Demo1ZhiHuTopic(i)
 		Demo2ZhiHuTopic(i)
 		Demo3WeiBoUser(i)
